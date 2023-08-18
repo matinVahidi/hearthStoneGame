@@ -1,5 +1,7 @@
 package hearth.stone;
 
+import javafx.event.ActionEvent;
+
 import java.io.*;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
@@ -28,7 +30,7 @@ public class AccountManager extends Game{
 
         try {
             if (verifyData.get(name).equals(pass)){
-                player = (Human) input(player.getName());
+                player = (Human) input(name);
                 saveData();
                 return true;
             }
@@ -87,6 +89,8 @@ public class AccountManager extends Game{
         }
         catch (FileNotFoundException e){
             verifyData = new Hashtable<>();
+        }catch (Exception e){
+            System.out.println("Exception in setVerifyData");
         }
     }
 
