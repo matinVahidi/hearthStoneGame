@@ -1,7 +1,5 @@
 package hearth.stone;
 
-import javafx.event.ActionEvent;
-
 import java.io.*;
 import java.util.Hashtable;
 import java.util.regex.Matcher;
@@ -10,6 +8,16 @@ import java.util.regex.Pattern;
 public class AccountManager extends Game{
 
     private static Hashtable<String, String> verifyData = null;
+
+
+    public static String getName(){
+        return player.getName();
+    }
+
+
+    public static String getPass(){
+        return verifyData.get(player.getName());
+    }
 
 
     public static int addPlayer(String name, String pass){
@@ -25,20 +33,23 @@ public class AccountManager extends Game{
     }
 
 
-    public static boolean enterAccount(String name, String pass){
+    public static int enterAccount(String name, String pass){
         setVerifyData();
 
         try {
             if (verifyData.get(name).equals(pass)){
                 player = (Human) input(name);
                 saveData();
-                return true;
+                return 1;
             }
-        }catch (Exception e){
+        }catch (NullPointerException e){
+            return 2;
+        }
+        catch (Exception e){
             System.out.println("Exception in enterAccount");
         }
 
-        return false;
+        return 3;
     }
 
 
@@ -53,19 +64,25 @@ public class AccountManager extends Game{
     }
 
 
-    public static boolean setPass(String pass){
+    public static int setPass(String pass){
+        if (verifyData.get(player.getName()).equals(pass))
+            return 1;
+
         if (!isPassValid(pass))
-            return false;
+            return 2;
 
         verifyData.put(player.getName(), pass);
         saveData();
-        return true;
+        return 3;
     }
 
 
-    public static boolean setName(String name){
+    public static int setName(String name){
+        if (player.getName().equals(name))
+            return 1;
+
         if (!isNameValid(name))
-            return false;
+            return 2;
 
         String pass = verifyData.remove(player.getName());
         verifyData.put(name, pass);
@@ -76,7 +93,7 @@ public class AccountManager extends Game{
 
         saveData();
 
-        return true;
+        return 3;
     }
 
 
@@ -95,10 +112,17 @@ public class AccountManager extends Game{
     }
 
 
+    public static void exit(){
+        saveData();
+        System.exit(1);
+    }
+
+
     private static void saveData(){
         try {
             output(verifyData, "verifyData");
-            output(player, player.getName());
+            if (player != null)
+                output(player, player.getName());
         }catch (Exception e){
             System.out.println("Exception in saveData");
         }
@@ -137,6 +161,8 @@ public class AccountManager extends Game{
 
     private static boolean isNameValid(String name){
         String regex = "[^/\\<>*?:\"|]*";
+
+        if (name.equals("")) return false;
 
         if (!followsPattern(regex, name)) return false;
 

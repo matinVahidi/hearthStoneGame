@@ -24,6 +24,12 @@ public class UserInterface {
     private TextField name;
     @FXML
     private PasswordField pass;
+    @FXML
+    private Text settingsText;
+    @FXML
+    private TextField newName;
+    @FXML
+    private TextField newPass;
 
 
     public void play(ActionEvent event){
@@ -47,8 +53,51 @@ public class UserInterface {
 
 
 
-    public void settings(ActionEvent event){
+    public void settings(ActionEvent event) {
         switchScene(event, "style/settings.fxml");
+    }
+
+
+    public void setProps(){
+        this.newPass.setText(AccountManager.getPass());
+        this.newName.setText(AccountManager.getName());
+    }
+
+
+
+    public void changeName(){
+        String newName = this.newName.getText();
+        int cond = AccountManager.setName(newName);
+
+        if (cond == 1)
+            this.settingsText.setText("Enter new Name than hit the button");
+        if (cond == 2)
+            this.settingsText.setText("New Name isn't valid. Try again");
+        if (cond == 3)
+            this.settingsText.setText("Name successfully changed to " + newName);
+
+        setProps();
+    }
+
+
+    public void changePass(){
+        String newPass = this.newPass.getText();
+        int cond = AccountManager.setPass(newPass);
+
+        if (cond == 1)
+            this.settingsText.setText("Enter new Password than hit the button");
+        if (cond == 2)
+            this.settingsText.setText("New Password isn't valid. Try again");
+        if (cond == 3)
+            this.settingsText.setText("Password successfully changed");
+
+        setProps();
+    }
+
+
+    public void deleteAccount(ActionEvent event){
+        AccountManager.deleteAccount();
+        switchScene(event, "style/entry.fxml");
     }
 
 
@@ -79,10 +128,12 @@ public class UserInterface {
     public void logIn(ActionEvent event){
         String name = this.name.getText();
         String pass = this.pass.getText();
-        boolean cond = AccountManager.enterAccount(name, pass);
+        int cond = AccountManager.enterAccount(name, pass);
 
-        if (!cond)
-            this.entryText.setText("UserName or Password is not valid");
+        if (cond == 2)
+            this.entryText.setText("There isn't such a UserName");
+        else if (cond == 3)
+            this.entryText.setText("Password is wrong");
         else
             switchScene(event, "style/main.fxml");
     }
