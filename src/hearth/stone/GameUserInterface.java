@@ -1,5 +1,6 @@
 package hearth.stone;
 
+import hearth.stone.cards.Cards;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class UserInterface {
+public class GameUserInterface extends Game {
 
     private Parent root;
     private Scene scene;
@@ -21,15 +22,26 @@ public class UserInterface {
     @FXML
     private Text entryText;
     @FXML
-    private TextField name;
+    private TextField userName;
     @FXML
     private PasswordField pass;
     @FXML
     private Text settingsText;
     @FXML
-    private TextField newName;
+    private TextField newUserName;
     @FXML
     private TextField newPass;
+
+
+    private void showCard(String name){
+        Cards card = Cards.valueOf(name);
+    }
+
+
+    private void showAllCards(){
+        for (String cardName: allCardsName)
+            showCard(cardName);
+    }
 
 
     public void play(ActionEvent event){
@@ -59,15 +71,15 @@ public class UserInterface {
 
 
     public void setProps(){
-        this.newPass.setText(AccountManager.getPass());
-        this.newName.setText(AccountManager.getName());
+        this.newPass.setText(GameAccountManager.getPass());
+        this.newUserName.setText(GameAccountManager.getName());
     }
 
 
 
     public void changeName(){
-        String newName = this.newName.getText();
-        int cond = AccountManager.setName(newName);
+        String newName = this.newUserName.getText();
+        int cond = GameAccountManager.setName(newName);
 
         if (cond == 1)
             this.settingsText.setText("Enter new Name than hit the button");
@@ -82,7 +94,7 @@ public class UserInterface {
 
     public void changePass(){
         String newPass = this.newPass.getText();
-        int cond = AccountManager.setPass(newPass);
+        int cond = GameAccountManager.setPass(newPass);
 
         if (cond == 1)
             this.settingsText.setText("Enter new Password than hit the button");
@@ -96,7 +108,7 @@ public class UserInterface {
 
 
     public void deleteAccount(ActionEvent event){
-        AccountManager.deleteAccount();
+        GameAccountManager.deleteAccount();
         switchScene(event, "style/entry.fxml");
     }
 
@@ -112,9 +124,9 @@ public class UserInterface {
 
 
     public void createAccount(ActionEvent event){
-        String name = this.name.getText();
+        String name = this.userName.getText();
         String pass = this.pass.getText();
-        int cond = AccountManager.addPlayer(name, pass);
+        int cond = GameAccountManager.addPlayer(name, pass);
 
         if (cond == 1)
             this.entryText.setText("UserName is not valid");
@@ -126,9 +138,9 @@ public class UserInterface {
 
 
     public void logIn(ActionEvent event){
-        String name = this.name.getText();
+        String name = this.userName.getText();
         String pass = this.pass.getText();
-        int cond = AccountManager.enterAccount(name, pass);
+        int cond = GameAccountManager.enterAccount(name, pass);
 
         if (cond == 2)
             this.entryText.setText("There isn't such a UserName");

@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hearth.stone.UserInterface">
+<AnchorPane prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hearth.stone.GameUserInterface">
    <children>
       <Button fx:id="statusExitButton" layoutX="697.0" layoutY="393.0" mnemonicParsing="false" onAction="#exit" prefHeight="67.0" prefWidth="218.0" text="Exit">
          <font>

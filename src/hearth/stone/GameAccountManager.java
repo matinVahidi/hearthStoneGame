@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AccountManager extends Game{
+public class GameAccountManager extends Game{
 
     private static Hashtable<String, String> verifyData = null;
 

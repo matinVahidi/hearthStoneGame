@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hearth.stone.UserInterface">
+<AnchorPane fx:id="" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hearth.stone.GameUserInterface">
    <children>
       <Button fx:id="settingsExitButton" layoutX="567.0" layoutY="523.0" mnemonicParsing="false" onAction="#exit" prefHeight="67.0" prefWidth="218.0" text="Exit">
          <font>
@@ -33,7 +33,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <TextField fx:id="newName" layoutX="799.0" layoutY="201.0" onAction="#changeName" prefHeight="67.0" prefWidth="218.0">
+      <TextField fx:id="newUserName" layoutX="799.0" layoutY="201.0" onAction="#changeName" prefHeight="67.0" prefWidth="218.0">
          <font>
             <Font size="24.0" />
          </font>
