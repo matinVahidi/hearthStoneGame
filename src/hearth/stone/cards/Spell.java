@@ -1,9 +1,16 @@
 package hearth.stone.cards;
 
-public class Spell extends Card{
+public class Spell extends neutralCard{
 
 
-    public Spell(String[] values) {
-        super(values);
+    public Spell(String name) {
+        super(name);
+    }
+
+    @Override
+    public void doEffect() {
+        switch (this.getCard().getName()) {
+            default:
+        }
     }
 }
