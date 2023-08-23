@@ -44,6 +44,8 @@ public class Hero implements damageAble{
     public int attack(damageAble target){
         try {
             this.weapon.changeDurability(-1);
+            if (target instanceof Minion)
+                this.changeHealth(-((Minion) target).getDamage());
             if (this.weapon.getDurability() <= 0)
                 this.setWeapon(null);
             return target.changeHealth(-this.weapon.getDamage());

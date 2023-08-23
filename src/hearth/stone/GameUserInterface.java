@@ -1,6 +1,6 @@
 package hearth.stone;
 
-import hearth.stone.cards.Cards;
+import hearth.stone.cards.CardTemplate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +34,7 @@ public class GameUserInterface extends Game {
 
 
     private void showCard(String name){
-        Cards card = Cards.valueOf(name);
+        CardTemplate card = CardTemplate.valueOf(name);
     }
 
 
@@ -45,28 +45,28 @@ public class GameUserInterface extends Game {
 
 
     public void play(ActionEvent event){
-        switchScene(event, "style/play.fxml");
+        switchScene(event, getPath("play"));
     }
 
 
     public void status(ActionEvent event){
-        switchScene(event, "style/status.fxml");
+        switchScene(event, getPath("status"));
     }
 
 
     public void shop(ActionEvent event){
-        switchScene(event, "style/shop.fxml");
+        switchScene(event, getPath("shop"));
     }
 
 
     public void collections(ActionEvent event){
-        switchScene(event, "style/collections.fxml");
+        switchScene(event, getPath("collections"));
     }
 
 
 
     public void settings(ActionEvent event) {
-        switchScene(event, "style/settings.fxml");
+        switchScene(event, getPath("settings"));
     }
 
 
@@ -109,17 +109,17 @@ public class GameUserInterface extends Game {
 
     public void deleteAccount(ActionEvent event){
         GameAccountManager.deleteAccount();
-        switchScene(event, "style/entry.fxml");
+        switchScene(event, getPath("entry"));
     }
 
 
     public void exit(ActionEvent event){
-        switchScene(event, "style/exit.fxml");
+        switchScene(event, getPath("exit"));
     }
 
 
     public void back(ActionEvent event){
-        switchScene(event, "style/main.fxml");
+        switchScene(event, getPath("main"));
     }
 
 
@@ -133,7 +133,7 @@ public class GameUserInterface extends Game {
         else if (cond == 2)
             this.entryText.setText("Password is not valid");
         else
-            switchScene(event, "style/main.fxml");
+            switchScene(event, getPath("main"));
     }
 
 
@@ -147,7 +147,7 @@ public class GameUserInterface extends Game {
         else if (cond == 3)
             this.entryText.setText("Password is wrong");
         else
-            switchScene(event, "style/main.fxml");
+            switchScene(event, getPath("main"));
     }
 
 
@@ -163,5 +163,9 @@ public class GameUserInterface extends Game {
             Alert err = new Alert(Alert.AlertType.ERROR, "Error in switchScene");
             err.show();
         }
+    }
+
+    private String getPath(String name){
+        return "style/" + name + ".fxml";
     }
 }

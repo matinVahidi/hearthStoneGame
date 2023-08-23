@@ -1,6 +1,14 @@
 package hearth.stone.cards;
 
-private enum Minions {
+enum Minions {
+    SOUL_STEALER(5, 5),
+    WIDOW_BLOOM_SEEDS_MAN2(2, 3),
+    KOBOLD_LIBRARIAN(1, 2),
+    EDVIN_VAN_CLEEF(2, 2),
+    RIGHTEOUS_PROTECTOR(1, 1),
+    ROT_FACE(6, 4),
+    NORGANNON(8, 3),
+    HIGH_PRIEST_AMET(7, 2),
     CURIO_COLLECTOR(4,4),
     SECURITY_ROVER(2, 6),
     TOMB_WARDEN(6, 3),

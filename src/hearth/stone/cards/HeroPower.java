@@ -14,7 +14,8 @@ enum HeroPowers{
         this.values = new String[]{name, effectDis};
     }
 
-    public String getEffectDisc(){return this.values[2];}
+    public String getName(){return this.values[0];}
+    public String getEffectDisc(){return this.values[1];}
 }
 
 
@@ -27,7 +28,7 @@ public class HeroPower implements effective{
 
     public HeroPower(String name){
         this.card = HeroPowers.valueOf(name);
-        this.mana = this.card.getMana();
+        this.mana = this.getMana();
     }
 
 

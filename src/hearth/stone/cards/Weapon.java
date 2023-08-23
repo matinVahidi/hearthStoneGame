@@ -1,7 +1,12 @@
 package hearth.stone.cards;
 
  enum Weapons{
-
+     ARCANITE_RIPPER(3, 2),
+     ALUNETH(0, 3),
+     ALDRACHI_WARBLADES(2, 2),
+     WICKED_KNIFE(1, 2),
+     BLOOD_FURY(3, 8),
+     MIRAGE_BLADE(3, 2);
 
      private int[] values;
 
