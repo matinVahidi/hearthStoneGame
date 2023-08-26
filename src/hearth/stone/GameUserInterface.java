@@ -11,7 +11,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
 
 
 public class GameUserInterface extends Game {
@@ -38,8 +42,8 @@ public class GameUserInterface extends Game {
     }
 
 
-    private void showAllCards(){
-        for (String cardName: allCardsName)
+    private void showCards(String[] cardsName){
+        for (String cardName: cardsName)
             showCard(cardName);
     }
 
@@ -114,7 +118,18 @@ public class GameUserInterface extends Game {
 
 
     public void exit(ActionEvent event){
-        switchScene(event, getPath("exit"));
+        newStage(event, getPath("exit"));
+    }
+
+
+    public void leave(){
+        GameAccountManager.exit();
+    }
+
+
+    public void stay(ActionEvent event){
+        this.stage = getStageFromEvent(event);
+        this.stage.close();
     }
 
 
@@ -151,21 +166,54 @@ public class GameUserInterface extends Game {
     }
 
 
+    public void newStage(ActionEvent event,String windowName){
+        try {
+            this.stage = getStageFromEvent(event);
+            this.root = loadFxml(windowName);
+            this.scene = new Scene(root);
+            Stage newStage = new Stage();
+            newStage.setScene(this.scene);
+
+            newStage.initOwner(this.stage);
+            newStage.initStyle(StageStyle.UNDECORATED);
+            newStage.initModality(Modality.APPLICATION_MODAL);
+
+            newStage.show();
+        }
+        catch (Exception e){
+            sendAlert("newStage");
+        }
+    }
+
+
     private void switchScene(ActionEvent event, String windowName){
         try {
-            this.root = FXMLLoader.load(getClass().getResource(windowName));
+            this.root = loadFxml(windowName);
             this.scene = new Scene(root);
-            this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            this.stage = getStageFromEvent(event);
             this.stage.setScene(this.scene);
+            this.stage.setFullScreen(true);
             this.stage.show();
         }
         catch (Exception e){
-            Alert err = new Alert(Alert.AlertType.ERROR, "Error in switchScene");
-            err.show();
+            sendAlert("switchScene");
         }
     }
 
     private String getPath(String name){
         return "style/" + name + ".fxml";
+    }
+
+    private void sendAlert(String name) {
+        Alert err = new Alert(Alert.AlertType.ERROR, "Error in "+ name);
+        err.show();
+    }
+
+    private Stage getStageFromEvent(ActionEvent event){
+        return (Stage) ((Node) event.getSource()).getScene().getWindow();
+    }
+
+    private Parent loadFxml(String windowName) throws IOException {
+        return FXMLLoader.load(getClass().getResource(windowName));
     }
 }

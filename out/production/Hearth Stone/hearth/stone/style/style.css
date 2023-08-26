@@ -1,0 +1,80 @@
+
+
+/*entry page*/
+#createAccountButton, #logInButton {
+    -fx-background-image: url("images/entryButtom.png");
+    -fx-background-size: cover;
+}
+
+#userName, #pass{
+    -fx-background-color: rgba(255, 255, 255, 0.6);
+}
+
+#backPane{
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+}
+
+/*main page*/
+
+.button{
+    -fx-background-size: cover;
+    -fx-background-color: none;
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-font-weight: bold;
+}
+
+.button:hover{
+    -fx-font-size: 24px;
+    -fx-pref-height: default;
+    -fx-pref-width: default;
+}
+
+#playButton{
+    -fx-background-image: url("images/playButton.png");
+    -fx-background-radius: 100px 100px 0px 0px;
+    -fx-font-size: 24px;
+}
+
+#statusButton{
+    -fx-background-image: url("images/statusButton.png");
+}
+
+#settingsButton{
+    -fx-background-image: url("images/settingsButton.png");
+}
+
+#mainExitButton{
+    -fx-background-image: url("images/mainExitButton.png");
+}
+
+#shopButton{
+    -fx-background-image: url("images/shopButton.png");
+}
+
+#collectionsButton{
+    -fx-background-image: url("images/collectionsButton.png");
+}
+
+/*exit page*/
+#exitPane{
+    -fx-background-color: transparent;
+    -fx-background-image: url("images/exitBackground.png");
+    -fx-background-size: cover;
+    /*-fx-shape: "M 0 0 L 375 0 L 371 -150 L 266 -154 L 251 -161 L 117 -168 L 110 -150 L 15 -150";*/
+}
+
+#stayButton{
+}
+
+#stayButton:hover{
+    -fx-font-size: 14px;
+}
+
+#leaveButton{
+}
+
+#leaveButton:hover{
+    -fx-font-size: 14px;
+}
+
