@@ -13,32 +13,32 @@
             <Image url="@images/mainBackground.png" />
          </image>
       </ImageView>
-      <Button fx:id="playButton" layoutX="622.0" layoutY="217.0" mnemonicParsing="false" onAction="#play" prefHeight="55.0" prefWidth="284.0" stylesheets="@style.css" text="Play" textFill="#513823">
+      <Button fx:id="playButton" layoutX="617.0" layoutY="200.0" mnemonicParsing="false" onAction="#play" prefHeight="28.0" prefWidth="302.0" stylesheets="@style.css" text="Play" textFill="#513823">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="statusButton" layoutX="589.0" layoutY="291.0" mnemonicParsing="false" onAction="#status" prefHeight="31.0" prefWidth="344.0" stylesheets="@style.css" text="Status" textFill="#513823">
+      <Button fx:id="statusButton" layoutX="597.0" layoutY="264.0" mnemonicParsing="false" onAction="#status" prefHeight="31.0" prefWidth="344.0" stylesheets="@style.css" text="Status" textFill="#513823">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="shopButton" layoutX="102.0" layoutY="687.0" mnemonicParsing="false" onAction="#shop" prefHeight="197.0" prefWidth="218.0" stylesheets="@style.css">
+      <Button fx:id="shopButton" layoutX="206.0" layoutY="665.0" mnemonicParsing="false" onAction="#shop" prefHeight="143.0" prefWidth="149.0" stylesheets="@style.css">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="collectionsButton" layoutX="686.0" layoutY="719.0" mnemonicParsing="false" onAction="#collections" prefHeight="131.0" prefWidth="338.0" stylesheets="@style.css">
+      <Button fx:id="collectionsButton" layoutX="696.0" layoutY="639.0" mnemonicParsing="false" onAction="#collections" prefHeight="131.0" prefWidth="338.0" stylesheets="@style.css">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="settingsButton" layoutX="591.0" layoutY="363.0" mnemonicParsing="false" onAction="#settings" prefHeight="42.0" prefWidth="347.0" stylesheets="@style.css" text="Settings" textFill="#513823">
+      <Button fx:id="settingsButton" layoutX="598.0" layoutY="327.0" mnemonicParsing="false" onAction="#settings" prefHeight="42.0" prefWidth="347.0" stylesheets="@style.css" text="Settings" textFill="#513823">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="mainExitButton" layoutX="601.0" layoutY="431.0" mnemonicParsing="false" onAction="#exit" prefHeight="56.0" prefWidth="323.0" stylesheets="@style.css" text="Exit" textFill="#513823">
+      <Button fx:id="mainExitButton" layoutX="607.0" layoutY="395.0" mnemonicParsing="false" onAction="#exit" prefHeight="56.0" prefWidth="323.0" stylesheets="@style.css" text="Exit" textFill="#513823">
          <font>
             <Font size="24.0" />
          </font>

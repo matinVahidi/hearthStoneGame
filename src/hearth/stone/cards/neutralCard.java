@@ -10,7 +10,6 @@ public abstract class neutralCard implements effective {
     public neutralCard(String name){
         this.id = 1;
         this.card = CardTemplate.valueOf(name);
-        this.card.raiseCount();
     }
 
 

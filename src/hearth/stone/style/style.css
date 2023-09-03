@@ -78,3 +78,92 @@
     -fx-font-size: 14px;
 }
 
+
+/*Collections page*/
+#collectionsBackButton{
+    -fx-background-image: url("images/collectionsBackButton.png");
+}
+
+#newDeckButton{
+    -fx-background-image: url("images/newDeckButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#warriorButton{
+    -fx-background-image: url("images/warriorButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#warlockButton{
+    -fx-background-image: url("images/warlockButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#shamanButton{
+    -fx-background-image: url("images/shamanButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#sevenPlusManaButton{
+    -fx-background-image: url("images/sevenPlusManaButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#rogueButton{
+    -fx-background-image: url("images/rogueButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#priestButton{
+    -fx-background-image: url("images/priestButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#paladinButton{
+    -fx-background-image: url("images/paladinButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#neutralButton{
+    -fx-background-image: url("images/neutralButton.png");
+    /*-fx-border-color: none;*/
+}
+
+.button{
+    -fx-background-image: url("images/manaButton.png");
+}
+
+#mageButton{
+    -fx-background-image: url("images/mageButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#hunterButton{
+    -fx-background-image: url("images/hunterButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#druidButton{
+    -fx-background-image: url("images/druidButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#demonHunterButton{
+    -fx-background-image: url("images/demonHunterButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#craftingButton{
+    -fx-background-image: url("images/craftingButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#collectionsFiltersButton{
+    -fx-background-image: url("images/collectionsFiltersButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#collectionsExitButton{
+    -fx-background-image: url("images/collectionsExitButton.png");
+    /*-fx-border-color: none;*/
+}

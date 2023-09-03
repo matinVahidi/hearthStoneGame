@@ -78,3 +78,9 @@
     -fx-font-size: 14px;
 }
 
+
+/*Collections page*/
+#collectionsBackButton{
+    -fx-background-image: url("images/collectionsBackButton.png");
+}
+

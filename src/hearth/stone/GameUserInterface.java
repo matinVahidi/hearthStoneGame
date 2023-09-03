@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -23,6 +24,7 @@ public class GameUserInterface extends Game {
     private Parent root;
     private Scene scene;
     private Stage stage;
+    private GameCollections collections;
     @FXML
     private Text entryText;
     @FXML
@@ -48,6 +50,14 @@ public class GameUserInterface extends Game {
     }
 
 
+    public void classBaseFilter(ActionEvent event){
+        Button
+        String className = "Neutral";
+
+        this.collections.classFilter(className);
+    }
+
+
     public void play(ActionEvent event){
         switchScene(event, getPath("play"));
     }
@@ -64,6 +74,7 @@ public class GameUserInterface extends Game {
 
 
     public void collections(ActionEvent event){
+        this.collections = new GameCollections();
         switchScene(event, getPath("collections"));
     }
 
