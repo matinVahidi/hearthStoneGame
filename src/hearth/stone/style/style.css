@@ -30,17 +30,17 @@
     -fx-pref-width: default;
 }
 
-#playButton{
+#play{
     -fx-background-image: url("images/playButton.png");
     -fx-background-radius: 100px 100px 0px 0px;
     -fx-font-size: 24px;
 }
 
-#statusButton{
+#status{
     -fx-background-image: url("images/statusButton.png");
 }
 
-#settingsButton{
+#settings{
     -fx-background-image: url("images/settingsButton.png");
 }
 
@@ -48,11 +48,11 @@
     -fx-background-image: url("images/mainExitButton.png");
 }
 
-#shopButton{
+#shop{
     -fx-background-image: url("images/shopButton.png");
 }
 
-#collectionsButton{
+#collections{
     -fx-background-image: url("images/collectionsButton.png");
 }
 
@@ -80,6 +80,10 @@
 
 
 /*Collections page*/
+#manaButtonBar .button{
+    -fx-background-image: url("images/manaButton.png");
+}
+
 #collectionsBackButton{
     -fx-background-image: url("images/collectionsBackButton.png");
 }
@@ -89,17 +93,17 @@
     /*-fx-border-color: none;*/
 }
 
-#warriorButton{
+#warrior{
     -fx-background-image: url("images/warriorButton.png");
     /*-fx-border-color: none;*/
 }
 
-#warlockButton{
+#warlock{
     -fx-background-image: url("images/warlockButton.png");
     /*-fx-border-color: none;*/
 }
 
-#shamanButton{
+#shaman{
     -fx-background-image: url("images/shamanButton.png");
     /*-fx-border-color: none;*/
 }
@@ -109,46 +113,43 @@
     /*-fx-border-color: none;*/
 }
 
-#rogueButton{
+#rogue{
     -fx-background-image: url("images/rogueButton.png");
     /*-fx-border-color: none;*/
 }
 
-#priestButton{
+#priest{
     -fx-background-image: url("images/priestButton.png");
     /*-fx-border-color: none;*/
 }
 
-#paladinButton{
+#paladin{
     -fx-background-image: url("images/paladinButton.png");
     /*-fx-border-color: none;*/
 }
 
-#neutralButton{
+#neutral{
     -fx-background-image: url("images/neutralButton.png");
     /*-fx-border-color: none;*/
 }
 
-.button{
-    -fx-background-image: url("images/manaButton.png");
-}
 
-#mageButton{
+#mage{
     -fx-background-image: url("images/mageButton.png");
     /*-fx-border-color: none;*/
 }
 
-#hunterButton{
+#hunter{
     -fx-background-image: url("images/hunterButton.png");
     /*-fx-border-color: none;*/
 }
 
-#druidButton{
+#druid{
     -fx-background-image: url("images/druidButton.png");
     /*-fx-border-color: none;*/
 }
 
-#demonHunterButton{
+#demonHunter{
     -fx-background-image: url("images/demonHunterButton.png");
     /*-fx-border-color: none;*/
 }
@@ -158,7 +159,7 @@
     /*-fx-border-color: none;*/
 }
 
-#collectionsFiltersButton{
+#collectionsFiltersTab{
     -fx-background-image: url("images/collectionsFiltersButton.png");
     /*-fx-border-color: none;*/
 }
@@ -166,4 +167,13 @@
 #collectionsExitButton{
     -fx-background-image: url("images/collectionsExitButton.png");
     /*-fx-border-color: none;*/
+}
+
+
+/*Collections filter tab*/
+#collectionsFilterTab .button{
+    -fx-background-image: url("images/filterButton.png");
+    -fx-border-color: none;
+    -fx-text-alignment: Left;
+    -fx-font-size: 16px;
 }

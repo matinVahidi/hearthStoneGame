@@ -1,5 +1,7 @@
 package hearth.stone;
 
+import hearth.stone.cards.CardTemplate;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,8 +11,8 @@ public class Player implements Serializable {
 
     private String name;
     private final int id;
-    private Hashtable<String , Integer> cards;
-    private Hashtable<String , ArrayList<String>> decks;
+    private Hashtable<CardTemplate, Integer> cards;
+    private Hashtable<String , ArrayList<CardTemplate>> decks;
 
 
     public Player(String name){
@@ -23,34 +25,34 @@ public class Player implements Serializable {
         return this.decks.keySet();
     }
 
-    public void addDeck(String name, ArrayList<String> deck){
+    public void addDeck(String name, ArrayList<CardTemplate> deck){
         this.decks.put(name, deck);
     }
 
-    public ArrayList<String> getDeck(String name){
+    public ArrayList<CardTemplate> getDeck(String name){
         return this.decks.get(name);
     }
 
-    public void deleteCard(String name){
-        int count = this.cards.get(name);
+    public void deleteCard(CardTemplate card){
+        int count = this.cards.get(card);
 
         if (count == 1)
-            this.cards.remove(name);
+            this.cards.remove(card);
         else
-            this.cards.put(name, --count);
+            this.cards.put(card, --count);
     }
 
-    public void addCard(String name){
-        if (this.cards.get(name) == null)
-            this.cards.put(name, 1);
+    public void addCard(CardTemplate card){
+        if (this.cards.get(card) == null)
+            this.cards.put(card, 1);
         else{
-            int count = this.cards.get(name);
-            this.cards.put(name, ++count);
+            int count = this.cards.get(card);
+            this.cards.put(card, ++count);
         }
     }
 
-    public String[] getCardsName(){
-        return this.cards.keySet().toArray(new String[0]);
+    public ArrayList<CardTemplate> getCards(){
+        return new ArrayList<>(this.cards.keySet());
     }
 
     public void setName(String name) {

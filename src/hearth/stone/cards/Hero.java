@@ -1,11 +1,11 @@
 package hearth.stone.cards;
 
 enum Heroes{
-    VALEERA_SANGUINAR("Valeera Sanguinar", "Rogue", "EDVIN_VAN_CLEEF"),
-    GARROSH_HELL_SCREM("Garrosh Hellscream", "Warrior", "ROT_FACE"),
-    JAINE_PROUD_MOORE("Jaina Proudmoore", "Mage", "JAINA_PROUD_MORE"),
-    TYRANDE_WHISPER_WIND("Tyrande Whisperwind", "Priest", "HIGH_PRIEST_AMET"),
-    PRINCE_ARTHAS("Prince Arthas", "Paladin", "GNOMISH_ARMY_KNIFE");
+    VALEERA_SANGUINAR("Valeera Sanguinar", "rogue", "EDVIN_VAN_CLEEF"),
+    GARROSH_HELL_SCREM("Garrosh Hellscream", "warrior", "ROT_FACE"),
+    JAINE_PROUD_MOORE("Jaina Proudmoore", "mage", "JAINA_PROUD_MORE"),
+    TYRANDE_WHISPER_WIND("Tyrande Whisperwind", "priest", "HIGH_PRIEST_AMET"),
+    PRINCE_ARTHAS("Prince Arthas", "paladin", "GNOMISH_ARMY_KNIFE");
 
     private final String[] values;
 

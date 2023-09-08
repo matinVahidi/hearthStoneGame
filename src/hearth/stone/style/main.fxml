@@ -13,27 +13,27 @@
             <Image url="@images/mainBackground.png" />
          </image>
       </ImageView>
-      <Button fx:id="playButton" layoutX="617.0" layoutY="200.0" mnemonicParsing="false" onAction="#play" prefHeight="28.0" prefWidth="302.0" stylesheets="@style.css" text="Play" textFill="#513823">
+      <Button fx:id="play" layoutX="617.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToWindow" prefHeight="28.0" prefWidth="302.0" stylesheets="@style.css" text="Play" textFill="#513823">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="statusButton" layoutX="597.0" layoutY="264.0" mnemonicParsing="false" onAction="#status" prefHeight="31.0" prefWidth="344.0" stylesheets="@style.css" text="Status" textFill="#513823">
+      <Button fx:id="status" layoutX="597.0" layoutY="264.0" mnemonicParsing="false" onAction="#goToWindow" prefHeight="31.0" prefWidth="344.0" stylesheets="@style.css" text="Status" textFill="#513823">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="shopButton" layoutX="206.0" layoutY="665.0" mnemonicParsing="false" onAction="#shop" prefHeight="143.0" prefWidth="149.0" stylesheets="@style.css">
+      <Button fx:id="shop" layoutX="206.0" layoutY="665.0" mnemonicParsing="false" onAction="#goToWindow" prefHeight="143.0" prefWidth="149.0" stylesheets="@style.css">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="collectionsButton" layoutX="696.0" layoutY="639.0" mnemonicParsing="false" onAction="#collections" prefHeight="131.0" prefWidth="338.0" stylesheets="@style.css">
+      <Button fx:id="collections" layoutX="696.0" layoutY="639.0" mnemonicParsing="false" onAction="#goToWindow" prefHeight="131.0" prefWidth="338.0" stylesheets="@style.css">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="settingsButton" layoutX="598.0" layoutY="327.0" mnemonicParsing="false" onAction="#settings" prefHeight="42.0" prefWidth="347.0" stylesheets="@style.css" text="Settings" textFill="#513823">
+      <Button fx:id="settings" layoutX="598.0" layoutY="327.0" mnemonicParsing="false" onAction="#goToWindow" prefHeight="42.0" prefWidth="347.0" stylesheets="@style.css" text="Settings" textFill="#513823">
          <font>
             <Font size="24.0" />
          </font>

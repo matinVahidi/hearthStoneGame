@@ -2,24 +2,24 @@ package hearth.stone;
 
 import hearth.stone.cards.CardTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
+
 
 public class GameCollections extends Game{
 
-//    private static ArrayList<String> notPlayerCards;
-    private static Hashtable<Integer, ArrayList<String>> manaCards;
-    private static Hashtable<String, ArrayList<String>> classCards;
+    private ArrayList<CardTemplate> cardsShown;
 
 
-    public boolean addDeck(String name, String[] cards){
+    public GameCollections(){
+        this.cardsShown = allCards();
+    }
+
+
+    public boolean addDeck(String name,ArrayList<CardTemplate> cards){
         if (isDeckNameValid(name) == false)
             return false;
 
-        ArrayList<String> deck = new ArrayList<>(List.of(cards));
-        player.addDeck(name, deck);
+        player.addDeck(name, cards);
         return true;
     }
 
@@ -30,93 +30,79 @@ public class GameCollections extends Game{
     }
 
 
-    public String[] allCards(){
-        return allCardsName;
+    public ArrayList<CardTemplate> allCards(){
+        this.cardsShown = new ArrayList<>(List.of(CardTemplate.values()));
+        return this.cardsShown;
     }
 
 
-    public String[] playerCards(){
-        return player.getCardsName();
+    public ArrayList<CardTemplate> playerCards(){
+        this.cardsShown = player.getCards();
+        return this.cardsShown;
     }
 
 
-    public String[] notPlayerCards(){
-        ArrayList<String> notPlayerCards = new ArrayList<>(Arrays.asList(allCardsName));
-        ArrayList<String> playerCards = new ArrayList<>(Arrays.asList(player.getCardsName()));
+    public ArrayList<CardTemplate> notPlayerCards(){
+        allCards();
+        ArrayList<CardTemplate> playerCards = player.getCards();
 
-        notPlayerCards.removeAll(playerCards);
+         this.cardsShown.removeAll(playerCards);
 
-        return notPlayerCards.toArray(new String[0]);
+        return this.cardsShown;
     }
 
 
-//    public String[] notPlayerCards(){
-//        if (notPlayerCards == null)
-//            setNotPlayerCards();
-//        return notPlayerCards.toArray(new String[0]);
-//    }
-//
-//
-//    private void setNotPlayerCards(){
-//        ArrayList<String> notPlayerCardsList = new ArrayList<>(Arrays.asList(allCardsName));
-//        ArrayList<String> playerCards = new ArrayList<>(Arrays.asList(player.getCardsName()));
-//
-//        notPlayerCardsList.removeAll(playerCards);
-//
-//        notPlayerCards = notPlayerCardsList;
-//    }
+    public ArrayList<CardTemplate> manaFilter(int mana){
+        this.cardsShown = null;
 
-
-    public String[] manaFilter(int mana){
-        if (manaCards.get(mana) == null)
-            return setManaCards(mana).toArray(new String[0]);
-
-        return manaCards.get(mana).toArray(new String[0]);
-    }
-
-
-    private ArrayList<String> setManaCards(int mana){
-        ArrayList<String> cardsWithMana = null;
-
-        for (String cardName: allCardsName){
-            if (CardTemplate.valueOf(cardName).getMana() == mana)
-                cardsWithMana.add(cardName);
+        if (mana == 7){
+            for (CardTemplate card: CardTemplate.values()){
+                if (card.getMana() >=  mana)
+                    this.cardsShown.add(card);
+            }
+        }
+        else{
+            for (CardTemplate card: CardTemplate.values()){
+                if (card.getMana() == mana)
+                    this.cardsShown.add(card);
+            }
         }
 
-        manaCards.put(mana, cardsWithMana);
-
-        return cardsWithMana;
+        return this.cardsShown;
     }
 
 
-    public String[] classFilter(String className){
-        if (classCards.get(className) == null)
-            return setClassCards(className).toArray(new String[0]);
+    public ArrayList<CardTemplate> classFilter(String className){
+        this.cardsShown = null;
 
-        return classCards.get(className).toArray(new String[0]);
-    }
-
-
-    private ArrayList<String> setClassCards(String className){
-        ArrayList<String> cardsWithClass = null;
-
-        for (String cardName: allCardsName){
-            if (CardTemplate.valueOf(cardName).getCardClass().equals(className))
-                cardsWithClass.add(cardName);
+        for (CardTemplate card: CardTemplate.values()){
+            if (card.getCardClass().equals(className))
+                this.cardsShown.add(card);
         }
 
-        return cardsWithClass;
+        return this.cardsShown;
     }
 
 
-    public String[] search(String name){
-        ArrayList<String> result = null;
+    public ArrayList<CardTemplate> search(String key){
+        this.cardsShown = null;
 
-        for (String cardName: allCardsName){
-            if (CardTemplate.valueOf(cardName).getName().startsWith(name))
-                result.add(cardName);
+        for (CardTemplate card: CardTemplate.values()){
+            if (card.getName().contains(key))
+                this.cardsShown.add(card);
         }
 
-        return result.toArray(new String[0]);
+        return this.cardsShown;
+    }
+
+
+    public ArrayList<CardTemplate> sort(String key){
+        try {
+            Comparator<CardTemplate> sortKey = (Comparator<CardTemplate>) Class.forName(key).newInstance();
+            Collections.sort(this.cardsShown, sortKey);
+            return this.cardsShown;
+        }catch (Exception e){
+            return null;
+        }
     }
 }
