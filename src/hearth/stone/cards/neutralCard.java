@@ -4,12 +4,12 @@ package hearth.stone.cards;
 public abstract class neutralCard implements effective {
 
     private final int id;
-    private final CardTemplate card;
+    private final NeutralCardTemplate card;
 
 
     public neutralCard(String name){
         this.id = 1;
-        this.card = CardTemplate.valueOf(name);
+        this.card = NeutralCardTemplate.valueOf(name);
     }
 
 

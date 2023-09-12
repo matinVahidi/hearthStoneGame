@@ -24,35 +24,41 @@
     -fx-font-weight: bold;
 }
 
-.button:hover{
-    -fx-font-size: 24px;
-    -fx-pref-height: default;
-    -fx-pref-width: default;
-}
 
-#playButton{
+#play{
     -fx-background-image: url("images/playButton.png");
     -fx-background-radius: 100px 100px 0px 0px;
-    -fx-font-size: 24px;
+    /*-fx-border-color: none;*/
 }
 
-#statusButton{
+#soloPlay{
+    -fx-background-image: url("images/soloPlayButton.png");
+    /*-fx-border-color: none;*/
+
+}
+
+#status{
     -fx-background-image: url("images/statusButton.png");
+    /*-fx-border-color: none;*/
+
 }
 
-#settingsButton{
+#settings{
     -fx-background-image: url("images/settingsButton.png");
+    /*-fx-border-color: none;*/
+
 }
 
 #mainExitButton{
-    -fx-background-image: url("images/mainExitButton.png");
+    -fx-background-image: url("images/exitButton.png");
+    /*-fx-border-color: none;*/
 }
 
-#shopButton{
+#shop{
     -fx-background-image: url("images/shopButton.png");
 }
 
-#collectionsButton{
+#collection{
     -fx-background-image: url("images/collectionsButton.png");
 }
 
@@ -80,7 +86,108 @@
 
 
 /*Collections page*/
+#manaButtonBar .button{
+    -fx-background-image: url("images/manaButton.png");
+}
+
 #collectionsBackButton{
     -fx-background-image: url("images/collectionsBackButton.png");
 }
 
+#newDeckButton{
+    -fx-background-image: url("images/newDeckButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#warrior{
+    -fx-background-image: url("images/warriorButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#warlock{
+    -fx-background-image: url("images/warlockButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#shaman{
+    -fx-background-image: url("images/shamanButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#sevenPlusManaButton{
+    -fx-background-image: url("images/sevenPlusManaButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#rogue{
+    -fx-background-image: url("images/rogueButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#priest{
+    -fx-background-image: url("images/priestButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#paladin{
+    -fx-background-image: url("images/paladinButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#neutral{
+    -fx-background-image: url("images/neutralButton.png");
+    /*-fx-border-color: none;*/
+}
+
+
+#mage{
+    -fx-background-image: url("images/mageButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#hunter{
+    -fx-background-image: url("images/hunterButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#druid{
+    -fx-background-image: url("images/druidButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#demonHunter{
+    -fx-background-image: url("images/demonHunterButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#craftingButton{
+    -fx-background-image: url("images/craftingButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#collectionsFiltersTab{
+    -fx-background-image: url("images/collectionsFiltersButton.png");
+    /*-fx-border-color: none;*/
+}
+
+#collectionsExitButton{
+    -fx-background-image: url("images/exitButton.png");
+    /*-fx-border-color: none;*/
+}
+
+
+/*Collections filter tab*/
+#collectionsFilterTab .button{
+    -fx-background-image: url("images/filterButton.png");
+    -fx-border-color: none;
+    -fx-text-alignment: Left;
+    -fx-font-size: 16px;
+}
+
+#searchButton {
+    -fx-background-image: url("images/searchButton.png");
+}
+
+#searchBar{
+    -fx-background-color: none;
+}

@@ -1,9 +1,10 @@
 package hearth.stone;
 
-import hearth.stone.cards.CardTemplate;
+import hearth.stone.cards.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,6 +12,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,14 +29,21 @@ public class GameUserInterface extends Game {
     private Parent root;
     private Scene scene;
     private Stage stage;
+    private GameCollections collectionsCls;
+    private GameLogic playCls;
+    private GameStatus statusCls;
+    private GameShop shopCls;
+    private ImageView temp;
+    private ImageView face;
+    private Text name;
+    private Text desc;
+    private Text mana;
+    private Text tribe;
+    private Text health;
+    private Text dam;
+    private StackPane container;
     @FXML
-    private GameCollections collections;
-    @FXML
-    private GameLogic play;
-    @FXML
-    private GameStatus status;
-    @FXML
-    private GameShop shop;
+    private Text collectionsText;
     @FXML
     private TextField searchBar;
     @FXML
@@ -48,72 +60,193 @@ public class GameUserInterface extends Game {
     private TextField newPass;
 
 
-    /**Collections Methods*/
-    /**---displaying of a card*/
-    private void showCard(CardTemplate card){
+    /**Collections Methods
+     * ---displaying of a minion card*/
+    private Pane showMinionCard(CardTemplate card){
+        createCard(card);
 
+        container.getChildren().addAll(temp, face, name, desc, tribe,mana, health, dam);
+
+        setCard(,,,,,,,,,,,,,);
+
+        return container;
+    }
+
+    private Pane showWeaponCard(CardTemplate card){
+        createCard(card);
+
+        container.getChildren().addAll(temp, face, name, desc, tribe,mana, health, dam);
+
+        setCard(,,,,,,,,,,,,,);
+
+        return container;
+    }
+
+    private Pane showSpellCard(CardTemplate card){
+        createCard(card);
+
+        container.getChildren().addAll(temp, face, name, desc, tribe,mana);
+
+        setCard(,,,,,,,,,,-1,-1,-1,-1);
+
+        return container;
+    }
+
+    private Pane showHeroCard(CardTemplate card){
+        createCard(card);
+
+        container.getChildren().addAll(temp, face, name);
+
+        setCard(,,,,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1);
+
+        return container;
+    }
+
+    private void createCard(CardTemplate cardTemp){
+        this.container  =  new StackPane();
+
+        if (cardTemp instanceof Heroes)
+            this.temp = new ImageView(new Image(getImagePath("hero", "minion")));
+        else{
+            NeutralCardTemplate card = (NeutralCardTemplate) cardTemp;
+            if (card.getCardClass().equals("Neutral"))
+                this.temp = new ImageView(new Image(getImagePath("Neutral"+card.getRarity(), "minion")));
+            else
+                this.temp = new ImageView(new Image(getImagePath(card.getRarity(), "minion")));
+            this.desc = new Text(card.getEffectDisc());
+            this.mana = new Text(card.getMana());
+            this.tribe = new Text(card.getTribe());
+            this.health = new Text(card.getHealth());
+            this.dam = new Text(card.getDamage());
+        }
+        this.face = new ImageView(new Image(getImagePath(cardTemp.getName(), "minion")));
+        this.name = new Text(cardTemp.getName());
+    }
+
+    private void setCard(float... args){
+        setAlignment(temp, 0, 0);
+        setAlignment(face, args[0], args[1]);
+        setAlignment(name, args[2], args[3]);
+        if(args[4] != -1){
+            setAlignment(desc, args[4], args[5]);
+            setAlignment(mana, args[6], args[7]);
+        }
+        if (args[8] != -1){
+            setAlignment(tribe, args[8], args[9]);
+            setAlignment(health, args[10], args[11]);
+            setAlignment(dam, args[12], args[13]);
+        }
+    }
+
+    private void setAlignment(Node node, float x, float y){
+        node.setLayoutY(y);
+        node.setLayoutX(x);
     }
 
     /**---how cards must be shown on page in relation to each other*/
-    private void showCards(ArrayList<CardTemplate> cards){
-        for (CardTemplate card: cards)
-            showCard(card);
+    private void showCards(ActionEvent event,ArrayList<CardTemplate> cards){
+        try{
+            Group group = new Group();
+            this.root = loadFxml(getPath("collection"));
+            group.getChildren().add(root);
+
+
+            for (int i=0; i<8; i++) {
+                CardTemplate card = cards.get(i);
+                String methodName = "show"+card.getKind()+"card";
+                Pane cardRep;
+
+                cardRep = (Pane) Class.forName("hearth.stone." +
+                        "GameUserInterface").getMethod(methodName).invoke(card);
+                cardRep.setLayoutX();
+                cardRep.setLayoutY();
+
+
+                group.getChildren().add(cardRep);
+            }
+
+            this.stage = getStageFromEvent(event);
+            this.scene = new Scene(group);
+            this.stage.setScene(scene);
+            this.stage.show();
+        }catch (Exception e){
+            sendAlert("showCards");
+        }
     }
 
     /**---shows all cards of a class*/
     public void classBaseFilter(ActionEvent event){
         String className = getButtonId(event);
 
-        ArrayList<CardTemplate>  cards = this.collections.classFilter(className);
-        showCards(cards);
+        ArrayList<CardTemplate>  cards = this.collectionsCls.classFilter(className);
+        showCards(event,cards);
+
+        setCollectionsText(className);
     }
 
     /**---shows all cards with specific mana cost*/
     public void manaBaseFilter(ActionEvent event){
         int mana = Integer.parseInt(getButtonId(event));
 
-        ArrayList<CardTemplate> cards = this.collections.manaFilter(mana);
-        showCards(cards);
+        ArrayList<CardTemplate> cards = this.collectionsCls.manaFilter(mana);
+        showCards(event, cards);
+
+        setCollectionsText(mana + " Mana");
     }
 
     /**---shows allCards*/
-    public void allCards(){
-        ArrayList<CardTemplate> cards = this.collections.allCards();
-        showCards(cards);
+    public void allCards(ActionEvent event){
+        ArrayList<CardTemplate> cards = this.collectionsCls.allCards();
+        showCards(event, cards);
+        setCollectionsText("All Cards");
     }
 
     /**---shows player'sCards*/
-    public void playerCards(){
-        ArrayList<CardTemplate> cards = this.collections.playerCards();
-        showCards(cards);
+    public void playerCards(ActionEvent event){
+        ArrayList<CardTemplate> cards = this.collectionsCls.playerCards();
+        showCards(event, cards);
+        setCollectionsText("My Cards");
     }
 
     /**---show notPlayer's*/
-    public void notPlayerCards(){
-        ArrayList<CardTemplate> cards = this.collections.notPlayerCards();
-        showCards(cards);
+    public void notPlayerCards(ActionEvent event){
+        ArrayList<CardTemplate> cards = this.collectionsCls.notPlayerCards();
+        showCards(event, cards);
+        setCollectionsText("Not MyCards");
     }
 
     /**---searches key in all card names*/
-    public void search(){
+    public void search(ActionEvent event){
         String key = this.searchBar.getText();
 
-        ArrayList<CardTemplate> cards = this.collections.search(key);
-        showCards(cards);
+        ArrayList<CardTemplate> cards = this.collectionsCls.search(key);
+        showCards(event, cards);
+
+        setCollectionsText("Search Result");
     }
 
     /**---sorts base on button pressed*/
     public void sort(ActionEvent event){
         String sortKey = getButtonId(event);
-        collections.sort(sortKey);
+        ArrayList<CardTemplate> cards = this.collectionsCls.sort(sortKey);
+        showCards(event, cards);
+    }
+
+    /**---sets collectionsText*/
+    public void setCollectionsText(String text){
+        this.collectionsText.setText(text);
+    }
+
+    public void newDeck(ActionEvent event){
+
     }
 
 
 
 
 
-    /**Settings Methods*/
-    /**---It suppose to set current name ang pass of player in a textField but doesn't work*/
+    /**Settings Methods
+     * ---It suppose to set current name ang pass of player in a textField but doesn't work*/
     public void setProps(){
         this.newPass.setText(GameAccountManager.getPass());
         this.newUserName.setText(GameAccountManager.getName());
@@ -156,8 +289,8 @@ public class GameUserInterface extends Game {
     }
 
 
-    /**Game Entry Methods*/
-    /**---opens a window to warn player about exiting game*/
+    /**Game Entry Methods
+    ---opens a window to warn player about exiting game*/
     public void exit(ActionEvent event){
         newStage(event, getPath("exit"));
     }
@@ -203,8 +336,8 @@ public class GameUserInterface extends Game {
     }
 
 
-    /**Common Methods*/
-    /**---from each window back to main*/
+    /**Common Methods
+     * ---from each window back to main*/
     public void back(ActionEvent event){
         switchScene(event, getPath("main"));
     }
@@ -216,10 +349,10 @@ public class GameUserInterface extends Game {
         switchScene(event, getPath(windowName));
 
         switch (windowName){
-            case "collections": this.collections = new GameCollections();
-            case "play": this.play = new GameLogic();
-            case "status": this.status = new GameStatus();
-            case "shop": this.shop = new GameShop();
+            case "collections": this.collectionsCls = new GameCollections();
+//            case "play": this.play = new GameLogic();
+//            case "status": this.status = new GameStatus();
+//            case "shop": this.shop = new GameShop();
         }
     }
 
@@ -250,13 +383,13 @@ public class GameUserInterface extends Game {
     }
 
     /**---switches from one file.fxml to another*/
-    private void switchScene(ActionEvent event, String windowName){
+    public void switchScene(ActionEvent event, String windowName){
         try {
             this.root = loadFxml(windowName);
             this.scene = new Scene(root);
             this.stage = getStageFromEvent(event);
             this.stage.setScene(this.scene);
-            this.stage.setFullScreen(true);
+//            this.stage.setFullScreen(true);
             this.stage.show();
         }
         catch (Exception e){
@@ -293,5 +426,9 @@ public class GameUserInterface extends Game {
     /**---gets ActionEvent and returns id of button*/
     private String getButtonId(ActionEvent event){
         return ((Button) event.getSource()).getId();
+    }
+
+    private String getImagePath(String name, String kind){
+        return "style/images/"+kind+name+".fxml";
     }
 }

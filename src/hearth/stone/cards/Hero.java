@@ -1,26 +1,5 @@
 package hearth.stone.cards;
 
-enum Heroes{
-    VALEERA_SANGUINAR("Valeera Sanguinar", "rogue", "EDVIN_VAN_CLEEF"),
-    GARROSH_HELL_SCREM("Garrosh Hellscream", "warrior", "ROT_FACE"),
-    JAINE_PROUD_MOORE("Jaina Proudmoore", "mage", "JAINA_PROUD_MORE"),
-    TYRANDE_WHISPER_WIND("Tyrande Whisperwind", "priest", "HIGH_PRIEST_AMET"),
-    PRINCE_ARTHAS("Prince Arthas", "paladin", "GNOMISH_ARMY_KNIFE");
-
-    private final String[] values;
-
-    Heroes(String name, String cardCls, String minionName){
-        this.values = new String[]{name, cardCls, minionName};
-    }
-
-    public String getName(){return this.values[0];}
-
-    public String getCardClass(){return this.values[1];}
-
-    public String getMinionName(){return this.values[2];}
-
-}
-
 
 public class Hero implements damageAble{
 

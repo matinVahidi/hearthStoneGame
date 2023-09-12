@@ -31,7 +31,7 @@ public class GameCollections extends Game{
 
 
     public ArrayList<CardTemplate> allCards(){
-        this.cardsShown = new ArrayList<>(List.of(CardTemplate.values()));
+        this.cardsShown = CardTemplate.values();
         return this.cardsShown;
     }
 
@@ -99,7 +99,7 @@ public class GameCollections extends Game{
     public ArrayList<CardTemplate> sort(String key){
         try {
             Comparator<CardTemplate> sortKey = (Comparator<CardTemplate>) Class.forName(key).newInstance();
-            Collections.sort(this.cardsShown, sortKey);
+            this.cardsShown.sort(sortKey);
             return this.cardsShown;
         }catch (Exception e){
             return null;
