@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<Pane prefHeight="260.0" prefWidth="196.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="SpellTemp" fitHeight="260.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/spell/Free.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="mana" fill="WHITE" layoutX="17.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="face" fitHeight="108.0" fitWidth="160.0" layoutX="23.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+      <TextFlow fx:id="disc" layoutX="30.0" layoutY="176.0" prefHeight="63.0" prefWidth="127.0" />
+      <Text fx:id="cardName" fill="WHITE" layoutX="17.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="156.53675079345703">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

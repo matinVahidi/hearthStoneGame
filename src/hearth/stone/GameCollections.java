@@ -2,12 +2,14 @@ package hearth.stone;
 
 import hearth.stone.cards.CardTemplate;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.stream.Stream;
 
 
 public class GameCollections extends Game{
 
-    private ArrayList<CardTemplate> cardsShown;
+    private Stream<CardTemplate> cardsShown;
 
 
     public GameCollections(){
@@ -15,7 +17,7 @@ public class GameCollections extends Game{
     }
 
 
-    public boolean addDeck(String name,ArrayList<CardTemplate> cards){
+    public boolean addDeck(String name, ArrayList<CardTemplate> cards){
         if (isDeckNameValid(name) == false)
             return false;
 
@@ -30,76 +32,58 @@ public class GameCollections extends Game{
     }
 
 
-    public ArrayList<CardTemplate> allCards(){
-        this.cardsShown = CardTemplate.values();
+    public Stream<CardTemplate> allCards(){
+        this.cardsShown = CardTemplate.values().sorted();
         return this.cardsShown;
     }
 
 
-    public ArrayList<CardTemplate> playerCards(){
-        this.cardsShown = player.getCards();
+    public Stream<CardTemplate> playerCards(){
+        this.cardsShown = player.getCards().sorted();
         return this.cardsShown;
     }
 
 
-    public ArrayList<CardTemplate> notPlayerCards(){
-        allCards();
-        ArrayList<CardTemplate> playerCards = player.getCards();
-
-         this.cardsShown.removeAll(playerCards);
-
-        return this.cardsShown;
-    }
-
-
-    public ArrayList<CardTemplate> manaFilter(int mana){
-        this.cardsShown = null;
-
-        if (mana == 7){
-            for (CardTemplate card: CardTemplate.values()){
-                if (card.getMana() >=  mana)
-                    this.cardsShown.add(card);
-            }
-        }
-        else{
-            for (CardTemplate card: CardTemplate.values()){
-                if (card.getMana() == mana)
-                    this.cardsShown.add(card);
-            }
-        }
+    public Stream<CardTemplate> notPlayerCards(){
+        this.cardsShown = allCards()
+                .filter(card -> playerCards().noneMatch(cardTemp -> cardTemp.equals(card))).sorted();
 
         return this.cardsShown;
     }
 
 
-    public ArrayList<CardTemplate> classFilter(String className){
-        this.cardsShown = null;
+    public Stream<CardTemplate> manaFilter(int mana){
+        if (mana == 7)
+            this.cardsShown = allCards()
+                    .filter(card -> card.getManaInt() >=  mana);
+        else
+            this.cardsShown = allCards()
+                    .filter(card -> card.getManaInt() ==  mana);
 
-        for (CardTemplate card: CardTemplate.values()){
-            if (card.getCardClass().equals(className))
-                this.cardsShown.add(card);
-        }
+        return this.cardsShown.sorted();
+    }
+
+
+    public Stream<CardTemplate> classFilter(String className){
+        this.cardsShown = allCards()
+                .filter(card -> card.getCardClass() == className).sorted();
 
         return this.cardsShown;
     }
 
 
-    public ArrayList<CardTemplate> search(String key){
-        this.cardsShown = null;
-
-        for (CardTemplate card: CardTemplate.values()){
-            if (card.getName().contains(key))
-                this.cardsShown.add(card);
-        }
+    public Stream<CardTemplate> search(String key){
+        this.cardsShown = allCards()
+                .filter(card -> card.getName() == key).sorted();
 
         return this.cardsShown;
     }
 
 
-    public ArrayList<CardTemplate> sort(String key){
+    public Stream<CardTemplate> sort(String key){
         try {
             Comparator<CardTemplate> sortKey = (Comparator<CardTemplate>) Class.forName(key).newInstance();
-            this.cardsShown.sort(sortKey);
+            this.cardsShown.sorted(sortKey);
             return this.cardsShown;
         }catch (Exception e){
             return null;

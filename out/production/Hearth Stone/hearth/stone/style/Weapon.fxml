@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<Pane fx:id="card_4" prefHeight="260.0" prefWidth="196.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="temp" fitHeight="260.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/weapon/Free.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="mana" fill="WHITE" layoutX="17.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="dam" fill="WHITE" layoutX="15.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="health" fill="WHITE" layoutX="159.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextFlow fx:id="disc" layoutX="28.0" layoutY="170.0" prefHeight="63.0" prefWidth="127.0" />
+      <Text fx:id="cardName" fill="WHITE" layoutX="13.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="156.53675079345703">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="face" fitHeight="114.0" fitWidth="123.0" layoutX="32.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</Pane>

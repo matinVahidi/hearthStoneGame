@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface CardTemplate {
 
@@ -20,13 +21,11 @@ public interface CardTemplate {
     String getMana();
 
 
-    static ArrayList<CardTemplate> values(){
-        List merged = new ArrayList<CardTemplate>(Arrays.asList(NeutralCardTemplate.values()));
-        List list = new ArrayList<CardTemplate>(Arrays.asList(Heroes.values()));
+    static Stream<CardTemplate> values(){
+        Stream<CardTemplate> stream_1 = Arrays.stream(NeutralCardTemplate.values());
+        Stream<CardTemplate> stream_2 = Arrays.stream(NeutralCardTemplate.values());
 
-        merged.add(list);
-
-        return (ArrayList<CardTemplate>) merged;
+        return Stream.concat(stream_1, stream_2);
     }
 
 

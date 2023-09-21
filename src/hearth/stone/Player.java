@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class Player implements Serializable {
 
@@ -51,8 +52,8 @@ public class Player implements Serializable {
         }
     }
 
-    public ArrayList<CardTemplate> getCards(){
-        return new ArrayList<>(this.cards.keySet());
+    public Stream<CardTemplate> getCards(){
+        return this.cards.keySet().stream();
     }
 
     public void setName(String name) {
